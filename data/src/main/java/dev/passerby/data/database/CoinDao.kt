@@ -13,6 +13,12 @@ interface CoinDao {
     @Query("select * from coins")
     fun getCoinList(): LiveData<List<CoinDbModel>>
 
+    @Query("select * from coins where isFavorite = 'true'")
+    fun getFavorites(): LiveData<List<CoinDbModel>>
+
+    @Query("select * from coins where name like :filter order by rank")
+    fun searchCoins(filter: String): LiveData<List<CoinDbModel>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCoin(coinsList: List<CoinDbModel>)
 }
