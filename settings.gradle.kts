@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Crypto Compose Project"
 include(":app")
- 
+include(":domain")

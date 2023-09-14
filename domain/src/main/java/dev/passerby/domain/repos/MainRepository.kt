@@ -1,0 +1,13 @@
+package dev.passerby.domain.repos
+
+import androidx.lifecycle.LiveData
+import dev.passerby.domain.models.CoinModel
+
+interface MainRepository {
+
+    fun getCoinList(): LiveData<List<CoinModel>>
+    fun getFavorites(): LiveData<List<CoinModel>>
+    fun searchCoins(): LiveData<List<CoinModel>>
+
+    suspend fun loadCoins()
+}
