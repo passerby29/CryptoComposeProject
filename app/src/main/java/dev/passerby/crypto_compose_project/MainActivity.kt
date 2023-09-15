@@ -3,14 +3,15 @@ package dev.passerby.crypto_compose_project
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import dev.passerby.crypto_compose_project.ui.theme.CryptoComposeProjectTheme
+import dev.passerby.domain.models.CoinModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +21,9 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.LightGray
                 ) {
-                    Greeting("Android")
+                    HomeScreen()
                 }
             }
         }
@@ -30,17 +31,89 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun HomeScreen() {
+    Column {
+        HomeTopAppBar()
+        FavouritesCardSlider(
+            favItems = listOf(
+                CoinModel(
+                    1,
+                    "",
+                    1,
+                    emptyList(),
+                    "",
+                    "",
+                    1.0,
+                    "Bitcoin",
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1,
+                    "",
+                    "BTC",
+                    1L,
+                    "",
+                    1.0,
+                    "",
+                    true
+                ),
+                CoinModel(
+                    1,
+                    "",
+                    1,
+                    emptyList(),
+                    "",
+                    "",
+                    1.0,
+                    "Bitcoin",
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    2,
+                    "",
+                    "BTC",
+                    1L,
+                    "",
+                    1.0,
+                    "",
+                    true
+                ),
+                CoinModel(
+                    1,
+                    "",
+                    1,
+                    emptyList(),
+                    "",
+                    "",
+                    1.0,
+                    "Bitcoin",
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    3,
+                    "",
+                    "BTC",
+                    1L,
+                    "",
+                    1.0,
+                    "",
+                    true
+                )
+            )
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun HomePreview() {
     CryptoComposeProjectTheme {
-        Greeting("Android")
+        HomeScreen()
     }
 }
