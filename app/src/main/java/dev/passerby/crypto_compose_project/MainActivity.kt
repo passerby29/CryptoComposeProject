@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
+import dev.passerby.crypto_compose_project.Constants.placeholder
 import dev.passerby.crypto_compose_project.ui.theme.CryptoComposeProjectTheme
 import dev.passerby.crypto_compose_project.viewmodels.HomeViewModel
 import dev.passerby.domain.models.CoinModel
@@ -65,75 +66,3 @@ fun HomePreview() {
         HomeScreen(placeholder)
     }
 }
-
-val placeholder = listOf(
-    CoinModel(
-        1,
-        "",
-        1,
-        emptyList(),
-        "",
-        "",
-        1.0,
-        "Bitcoin",
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1,
-        "",
-        "BTC",
-        1L,
-        "",
-        1.0,
-        "",
-        true
-    ),
-    CoinModel(
-        1,
-        "",
-        1,
-        emptyList(),
-        "",
-        "",
-        1.0,
-        "Bitcoin",
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        2,
-        "",
-        "BTC",
-        1L,
-        "",
-        1.0,
-        "",
-        true
-    ),
-    CoinModel(
-        1,
-        "",
-        1,
-        emptyList(),
-        "",
-        "",
-        1.0,
-        "Bitcoin",
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        1.0,
-        3,
-        "",
-        "BTC",
-        1L,
-        "",
-        1.0,
-        "",
-        true
-    )
-)
