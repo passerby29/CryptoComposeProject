@@ -3,13 +3,17 @@ package dev.passerby.crypto_compose_project
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import dev.passerby.crypto_compose_project.ui.theme.CryptoComposeProjectTheme
 import dev.passerby.domain.models.CoinModel
 
@@ -34,6 +38,7 @@ class MainActivity : ComponentActivity() {
 fun HomeScreen() {
     Column {
         HomeTopAppBar()
+        Spacer(modifier = Modifier.size(16.dp))
         FavouritesCardSlider(
             favItems = listOf(
                 CoinModel(
@@ -108,6 +113,7 @@ fun HomeScreen() {
             )
         )
     }
+    HomeBottomSheetScaffold()
 }
 
 @Preview(showBackground = true)

@@ -34,7 +34,7 @@ private fun MyBottomSheetScaffold() {
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberBottomSheetScaffoldState()
     BottomSheetScaffold(
-        sheetPeekHeight = 128.dp,
+        sheetPeekHeight = 320.dp,
         sheetContent = {
             Box(
                 modifier = Modifier
