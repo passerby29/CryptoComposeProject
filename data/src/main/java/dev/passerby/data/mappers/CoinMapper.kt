@@ -3,6 +3,8 @@ package dev.passerby.data.mappers
 import dev.passerby.data.models.db.CoinDbModel
 import dev.passerby.data.models.dto.Coin
 import dev.passerby.domain.models.CoinModel
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class CoinMapper {
 
@@ -15,7 +17,7 @@ class CoinMapper {
         id = dto.id,
         marketCap = dto.marketCap,
         name = dto.name,
-        price = dto.price,
+        price = roundDouble(dto.price),
         priceBtc = dto.priceBtc,
         priceChange1d = dto.priceChange1d,
         priceChange1h = dto.priceChange1h,
@@ -52,4 +54,14 @@ class CoinMapper {
         websiteUrl = dbModel.websiteUrl,
         isFavorite = dbModel.isFavorite
     )
+
+    private fun roundDouble(double: Double): Double{
+        val decimalFormat = DecimalFormat(DECIMAL_FORMAT_PATTERN)
+        decimalFormat.roundingMode = RoundingMode.DOWN
+        return decimalFormat.format(double).toDouble()
+    }
+
+    companion object{
+        private const val DECIMAL_FORMAT_PATTERN = "#.##"
+    }
 }

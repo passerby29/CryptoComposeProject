@@ -3,21 +3,28 @@ package dev.passerby.crypto_compose_project
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import dev.passerby.crypto_compose_project.ui.theme.CryptoComposeProjectTheme
+import dev.passerby.crypto_compose_project.viewmodels.HomeViewModel
 import dev.passerby.domain.models.CoinModel
 
 class MainActivity : ComponentActivity() {
+
+    private val homeViewModel by lazy {
+        ViewModelProvider(this)[HomeViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,7 +34,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.LightGray
                 ) {
-                    HomeScreen()
+                    val favItems = homeViewModel.favoritesList.observeAsState().value
+                    if (favItems.isNullOrEmpty()) {
+                        HomeScreen(favItems = placeholder)
+                    } else {
+                        HomeScreen(favItems)
+                    }
                 }
             }
         }
@@ -35,82 +47,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(favItems: List<CoinModel>) {
     Column {
         HomeTopAppBar()
         Spacer(modifier = Modifier.size(16.dp))
         FavouritesCardSlider(
-            favItems = listOf(
-                CoinModel(
-                    1,
-                    "",
-                    1,
-                    emptyList(),
-                    "",
-                    "",
-                    1.0,
-                    "Bitcoin",
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    1,
-                    "",
-                    "BTC",
-                    1L,
-                    "",
-                    1.0,
-                    "",
-                    true
-                ),
-                CoinModel(
-                    1,
-                    "",
-                    1,
-                    emptyList(),
-                    "",
-                    "",
-                    1.0,
-                    "Bitcoin",
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    2,
-                    "",
-                    "BTC",
-                    1L,
-                    "",
-                    1.0,
-                    "",
-                    true
-                ),
-                CoinModel(
-                    1,
-                    "",
-                    1,
-                    emptyList(),
-                    "",
-                    "",
-                    1.0,
-                    "Bitcoin",
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    3,
-                    "",
-                    "BTC",
-                    1L,
-                    "",
-                    1.0,
-                    "",
-                    true
-                )
-            )
+            favItems = favItems
         )
     }
     HomeBottomSheetScaffold()
@@ -120,6 +62,78 @@ fun HomeScreen() {
 @Composable
 fun HomePreview() {
     CryptoComposeProjectTheme {
-        HomeScreen()
+        HomeScreen(placeholder)
     }
 }
+
+val placeholder = listOf(
+    CoinModel(
+        1,
+        "",
+        1,
+        emptyList(),
+        "",
+        "",
+        1.0,
+        "Bitcoin",
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1,
+        "",
+        "BTC",
+        1L,
+        "",
+        1.0,
+        "",
+        true
+    ),
+    CoinModel(
+        1,
+        "",
+        1,
+        emptyList(),
+        "",
+        "",
+        1.0,
+        "Bitcoin",
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        2,
+        "",
+        "BTC",
+        1L,
+        "",
+        1.0,
+        "",
+        true
+    ),
+    CoinModel(
+        1,
+        "",
+        1,
+        emptyList(),
+        "",
+        "",
+        1.0,
+        "Bitcoin",
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        3,
+        "",
+        "BTC",
+        1L,
+        "",
+        1.0,
+        "",
+        true
+    )
+)

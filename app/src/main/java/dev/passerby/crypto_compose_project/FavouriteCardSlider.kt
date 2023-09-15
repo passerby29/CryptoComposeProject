@@ -36,7 +36,7 @@ import dev.passerby.domain.models.CoinModel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavouritesCardSlider(favItems: List<CoinModel>) {
-    val pagerState = rememberPagerState { 3 }
+    val pagerState = rememberPagerState { favItems.size }
     Box(modifier = Modifier.fillMaxSize()) {
         HorizontalPager(
             state = pagerState,
