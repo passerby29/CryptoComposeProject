@@ -25,7 +25,6 @@ object Constants {
             "",
             1.0,
             "",
-            true
         ),
         CoinModel(
             1,
@@ -48,7 +47,6 @@ object Constants {
             "",
             1.0,
             "",
-            true
         ),
         CoinModel(
             1,
@@ -71,7 +69,6 @@ object Constants {
             "",
             1.0,
             "",
-            true
         )
     )
 }

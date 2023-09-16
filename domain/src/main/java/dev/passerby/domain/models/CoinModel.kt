@@ -21,5 +21,4 @@ data class CoinModel(
     val twitterUrl: String?,
     val volume: Double,
     val websiteUrl: String,
-    val isFavorite: Boolean
 )

@@ -16,7 +16,9 @@ import dev.passerby.domain.repos.MainRepository
 
 class MainRepositoryImpl(application: Application) : MainRepository {
 
-    private val coinDao = AppDatabase.getInstance(application).coinDao()
+    private val db = AppDatabase.getInstance(application)
+    private val coinDao = db.coinDao()
+    private val favoriteDao = db.favoriteDap()
     private val apiService = ApiFactory.apiService
     private val coinMapper = CoinMapper()
     private var result: MutableLiveData<BaseResponse<CoinsDto>> = MutableLiveData()
@@ -26,9 +28,14 @@ class MainRepositoryImpl(application: Application) : MainRepository {
         return getEntityList(coinList)
     }
 
-    override fun getFavorites(): LiveData<List<CoinModel>> {
-        val coinList = coinDao.getFavorites()
+    override fun getTopCoinList(): LiveData<List<CoinModel>> {
+        val coinList = coinDao.getTopCoins()
         return getEntityList(coinList)
+    }
+
+    override fun getFavorites(): LiveData<List<CoinModel>> {
+        val favoriteList = favoriteDao.getFavoritesList()
+        return getEntityList(favoriteList)
     }
 
     override fun searchCoins(filter: String): LiveData<List<CoinModel>> {

@@ -61,3 +61,8 @@ private fun MyBottomSheetScaffold() {
         scaffoldState = scaffoldState
     ){}
 }
+
+@Composable
+private fun HomeCoinList(){
+
+}

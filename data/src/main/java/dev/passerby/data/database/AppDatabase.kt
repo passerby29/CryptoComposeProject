@@ -7,12 +7,18 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import dev.passerby.data.converters.JsonConverters
 import dev.passerby.data.models.db.CoinDbModel
+import dev.passerby.data.models.db.FavoriteDbModel
 
-@Database(entities = [CoinDbModel::class], exportSchema = false, version = 6)
+@Database(
+    entities = [CoinDbModel::class, FavoriteDbModel::class],
+    exportSchema = false,
+    version = 1
+)
 @TypeConverters(JsonConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun coinDao(): CoinDao
+    abstract fun favoriteDap(): FavoriteDao
 
     companion object {
 
