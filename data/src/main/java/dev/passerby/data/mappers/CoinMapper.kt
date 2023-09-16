@@ -52,7 +52,6 @@ class CoinMapper {
         twitterUrl = dbModel.twitterUrl,
         volume = dbModel.volume,
         websiteUrl = dbModel.websiteUrl,
-        isFavorite = dbModel.isFavorite
     )
 
     private fun roundDouble(double: Double): Double{

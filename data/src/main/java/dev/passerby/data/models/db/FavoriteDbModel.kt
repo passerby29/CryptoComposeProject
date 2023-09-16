@@ -3,8 +3,8 @@ package dev.passerby.data.models.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "coins")
-data class CoinDbModel(
+@Entity(tableName = "favorites")
+data class FavoriteDbModel(
     val availableSupply: Long,
     val contractAddress: String?,
     val decimals: Int?,

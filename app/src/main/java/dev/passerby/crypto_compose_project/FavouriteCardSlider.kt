@@ -145,8 +145,8 @@ fun DotsIndicator(
     modifier: Modifier = Modifier,
     totalDots: Int,
     selectedIndex: Int,
-    selectedColor: Color = Color.DarkGray, /* Color.Yellow */
-    unSelectedColor: Color = Color.Gray, /* Color.Gray */
+    selectedColor: Color = Color.DarkGray,
+    unSelectedColor: Color = Color.Gray,
     dotSize: Dp,
 ) {
     LazyRow(
