@@ -36,10 +36,12 @@ class MainActivity : ComponentActivity() {
                     color = Color.LightGray
                 ) {
                     val favItems = homeViewModel.favoritesList.observeAsState().value
+                    val topCoinList =
+                        homeViewModel.topCoinsList.observeAsState().value ?: placeholder
                     if (favItems.isNullOrEmpty()) {
-                        HomeScreen(favItems = placeholder)
+                        HomeScreen(favItems = placeholder, topCoinList = topCoinList)
                     } else {
-                        HomeScreen(favItems)
+                        HomeScreen(favItems, topCoinList)
                     }
                 }
             }
@@ -48,7 +50,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeScreen(favItems: List<CoinModel>) {
+fun HomeScreen(favItems: List<CoinModel>, topCoinList: List<CoinModel>) {
     Column {
         HomeTopAppBar()
         Spacer(modifier = Modifier.size(16.dp))
@@ -56,13 +58,13 @@ fun HomeScreen(favItems: List<CoinModel>) {
             favItems = favItems
         )
     }
-    HomeBottomSheetScaffold()
+    HomeBottomSheetScaffold(topCoinList)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
     CryptoComposeProjectTheme {
-        HomeScreen(placeholder)
+        HomeScreen(placeholder, placeholder)
     }
 }
